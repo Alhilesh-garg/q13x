@@ -111,7 +111,7 @@ export const PublicStoreView: React.FC<PublicStoreViewProps> = ({
 
   const validSocialLinks = (store.socials || []).filter((url) => Boolean(url && url.trim()));
   const currentSubdomain = store.subdomain || subdomain || 'mystore';
-  const liveUrl = `https://${currentSubdomain}.q13x-three.vercel.app`;
+  const liveUrl = `https://q13x-three.vercel.app/${currentSubdomain}`;
 
   const styleConfig: BusinessTitleStyle = (store as AppData).titleStyle || DEFAULT_BUSINESS_STYLE;
 

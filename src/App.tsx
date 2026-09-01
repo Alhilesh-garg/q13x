@@ -53,11 +53,31 @@ const INITIAL_DEFAULT_DATA: AppData = {
 };
 
 export default function App() {
-  // Check if URL opened with ?store=subdomain
+  // Check if URL opened with ?store=subdomain OR /subdomain path OR subdomain.domain.com
   const [initialStoreQuery] = useState<string | null>(() => {
     try {
       const params = new URLSearchParams(window.location.search);
-      return params.get('store');
+      const storeParam = params.get('store');
+      if (storeParam) return storeParam;
+
+      // Check pathname (e.g. https://q13x-three.vercel.app/rahul)
+      const cleanPath = window.location.pathname.replace(/^\/+|\/+$/g, '').trim();
+      const reservedPaths = ['create', 'edit', 'preview', 'home', 'api', 'dashboard', 'settings'];
+      if (cleanPath && !reservedPaths.includes(cleanPath.toLowerCase())) {
+        const slug = cleanPath.split('/')[0];
+        if (slug && slug.length >= 3) {
+          return slug;
+        }
+      }
+
+      // Check if hostname has subdomain (e.g. rahul.q13x-three.vercel.app)
+      const hostname = window.location.hostname;
+      const parts = hostname.split('.');
+      if (parts.length > 2 && parts[0] !== 'www' && parts[0] !== 'q13x-three' && parts[0] !== 'localhost') {
+        return parts[0];
+      }
+
+      return null;
     } catch {
       return null;
     }
@@ -907,32 +927,29 @@ export default function App() {
               <span className="text-[11px] text-slate-400">Step 4</span>
             </div>
 
-            {/* Subdomain Input with Live Server Availability Check */}
+            {/* Subdomain / Slug Input with Live Server Availability Check */}
             <div>
               <label htmlFor="c-subdomain" className="text-xs font-bold text-slate-800 block mb-1">
-                Choose Subdomain Name
+                Choose Store Link / Subdomain Name
               </label>
               <div className="flex items-center rounded-xl border-2 border-slate-300 focus-within:border-indigo-600 bg-white overflow-hidden shadow-2xs transition-all">
-                <span className="px-3 py-2.5 bg-slate-100 text-slate-500 text-xs sm:text-sm font-mono select-none border-r border-slate-200 font-semibold">
-                  https://
+                <span className="px-3 py-2.5 bg-slate-100 text-slate-600 text-xs sm:text-sm font-mono select-none border-r border-slate-200 font-semibold">
+                  https://q13x-three.vercel.app/
                 </span>
                 <input
                   id="c-subdomain"
                   type="text"
-                  placeholder="e.g. meeraskitchen"
+                  placeholder="e.g. rahul"
                   value={createSubdomain}
                   onChange={(e) => setCreateSubdomain(sanitizeSubdomain(e.target.value))}
                   className="flex-1 px-3 py-2.5 text-xs sm:text-sm font-bold text-slate-900 font-mono outline-none bg-transparent"
                 />
-                <span className="px-3 py-2.5 bg-indigo-50 text-indigo-700 text-xs sm:text-sm font-mono font-bold select-none border-l border-indigo-100">
-                  .q13x-three.vercel.app
-                </span>
               </div>
 
               {/* Subdomain Status */}
               <div className="flex items-center justify-between text-xs mt-1.5">
                 <span className="text-slate-500 text-[11px]">
-                  Live URL: https://{createSubdomain || 'yourbrand'}.q13x-three.vercel.app
+                  Live URL: https://q13x-three.vercel.app/{createSubdomain || 'rahul'}
                 </span>
                 <span
                   className={`font-bold text-[11px] ${
@@ -1076,7 +1093,7 @@ export default function App() {
                 ) : (
                   <>
                     <Sparkles size={16} />
-                    <span>Create Store & Go Live ({createSubdomain}.q13x-three.vercel.app)</span>
+                    <span>Create Store & Go Live (q13x-three.vercel.app/{createSubdomain || 'rahul'})</span>
                     <ArrowRight size={16} />
                   </>
                 )}
@@ -1100,7 +1117,7 @@ export default function App() {
                   Unlock Your Store to Edit
                 </h1>
                 <p className="text-xs text-slate-500 max-w-xs mx-auto">
-                  Enter your store subdomain and the 6-digit PIN you set when creating the store.
+                  Enter your store name/slug and the 6-digit PIN you set when creating the store.
                 </p>
               </div>
 
@@ -1114,23 +1131,20 @@ export default function App() {
               <div className="space-y-4">
                 <div>
                   <label htmlFor="e-subdomain" className="text-xs font-bold text-slate-800 block mb-1">
-                    Store Subdomain
+                    Store Link / Slug
                   </label>
                   <div className="flex items-center rounded-xl border border-slate-300 focus-within:border-indigo-600 bg-white overflow-hidden">
-                    <span className="px-3 py-2.5 bg-slate-100 text-slate-500 text-xs font-mono select-none border-r border-slate-200 font-semibold">
-                      https://
+                    <span className="px-3 py-2.5 bg-slate-100 text-slate-600 text-xs font-mono select-none border-r border-slate-200 font-semibold">
+                      https://q13x-three.vercel.app/
                     </span>
                     <input
                       id="e-subdomain"
                       type="text"
-                      placeholder="meeraskitchen"
+                      placeholder="e.g. rahul"
                       value={editSubdomainInput}
                       onChange={(e) => setEditSubdomainInput(sanitizeSubdomain(e.target.value))}
                       className="flex-1 px-3 py-2 text-xs sm:text-sm font-bold text-slate-900 font-mono outline-none"
                     />
-                    <span className="px-3 py-2 bg-indigo-50 text-indigo-700 text-xs font-mono font-bold select-none border-l border-indigo-100">
-                      .q13x-three.vercel.app
-                    </span>
                   </div>
                 </div>
 
@@ -1193,8 +1207,8 @@ export default function App() {
                     <span className="text-xs font-bold text-emerald-950 block">
                       Unlocked: @{unlockedSubdomain}
                     </span>
-                    <span className="text-[11px] text-emerald-700">
-                      https://{unlockedSubdomain}.q13x-three.vercel.app
+                    <span className="text-[11px] text-emerald-700 font-mono font-medium">
+                      https://q13x-three.vercel.app/{unlockedSubdomain}
                     </span>
                   </div>
                 </div>
@@ -1384,14 +1398,14 @@ export default function App() {
           <div className="bg-slate-900 text-white px-3 py-1.5 sm:py-2 text-center text-xs flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
             <span className="font-mono text-emerald-400 font-bold flex items-center gap-1">
               <Globe size={13} />
-              https://{appData.subdomain || 'yourstore'}.q13x-three.vercel.app
+              https://q13x-three.vercel.app/{appData.subdomain || 'yourstore'}
             </span>
             <div className="flex items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => {
                   navigator.clipboard?.writeText(
-                    `https://${appData.subdomain || 'yourstore'}.q13x-three.vercel.app`
+                    `https://q13x-three.vercel.app/${appData.subdomain || 'yourstore'}`
                   );
                   showNotification('✓ Store link copied to clipboard!');
                 }}

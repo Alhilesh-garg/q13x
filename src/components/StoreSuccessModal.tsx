@@ -36,18 +36,15 @@ export const StoreSuccessModal: React.FC<StoreSuccessModalProps> = ({
 
   if (!isOpen) return null;
 
-  const liveSubdomainUrl = `https://${subdomain}.q13x-three.vercel.app`;
-  const trialStoreUrl = `${window.location.origin}${window.location.pathname}?store=${encodeURIComponent(
-    subdomain
-  )}`;
+  const liveStoreUrl = `https://q13x-three.vercel.app/${subdomain}`;
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(
-    trialStoreUrl
+    liveStoreUrl
   )}&margin=8`;
 
   const handleCopyLink = async () => {
     try {
       if (navigator.clipboard) {
-        await navigator.clipboard.writeText(liveSubdomainUrl);
+        await navigator.clipboard.writeText(liveStoreUrl);
       }
       setCopiedLink(true);
       setTimeout(() => setCopiedLink(false), 2500);
@@ -70,7 +67,7 @@ export const StoreSuccessModal: React.FC<StoreSuccessModalProps> = ({
 
   const handleShareWhatsApp = () => {
     const text = encodeURIComponent(
-      `Check out ${storeName || 'my store'} on our official link: ${liveSubdomainUrl}`
+      `Check out ${storeName || 'my store'} on our live link: ${liveStoreUrl}`
     );
     window.open(`https://wa.me/?text=${text}`, '_blank');
   };
@@ -80,8 +77,8 @@ export const StoreSuccessModal: React.FC<StoreSuccessModalProps> = ({
       try {
         await navigator.share({
           title: storeName || 'My Store',
-          text: `Visit ${storeName} at ${liveSubdomainUrl}`,
-          url: trialStoreUrl,
+          text: `Visit ${storeName} at ${liveStoreUrl}`,
+          url: liveStoreUrl,
         });
       } catch {
         // User cancelled
@@ -124,14 +121,14 @@ export const StoreSuccessModal: React.FC<StoreSuccessModalProps> = ({
           <div className="flex items-center justify-between text-[11px] text-slate-400">
             <span className="font-semibold text-emerald-400 flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              Official Subdomain URL
+              Live Store URL
             </span>
             <span>Live on q13x-three.vercel.app</span>
           </div>
 
           <div className="bg-black/50 border border-white/10 p-2.5 rounded-lg flex items-center justify-between gap-2 overflow-hidden">
             <span className="font-mono text-xs sm:text-sm font-bold text-emerald-300 truncate">
-              {liveSubdomainUrl}
+              {liveStoreUrl}
             </span>
             <button
               type="button"

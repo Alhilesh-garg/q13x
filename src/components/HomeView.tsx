@@ -32,8 +32,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const currentSubdomain = appData.subdomain || 'yourbrand';
   const baseDomain = appData.baseDomain || 'q13x-three.vercel.app';
   const fullLiveUrl = appData.subdomain
-    ? `https://${appData.subdomain}.${baseDomain}`
-    : `https://[your-store].${baseDomain}`;
+    ? `https://${baseDomain}/${appData.subdomain}`
+    : `https://${baseDomain}/[your-store]`;
 
   return (
     <div className="w-full bg-slate-50/60 min-h-full flex-1 pb-16 animate-in fade-in duration-150">

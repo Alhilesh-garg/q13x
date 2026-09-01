@@ -57,7 +57,7 @@ export const DomainView: React.FC<DomainViewProps> = ({
 
   const currentSubdomain = subdomainInput.trim() || 'mystore';
   const currentBaseDomain = baseDomainInput.trim() || 'q13x-three.vercel.app';
-  const fullLiveUrl = `https://${currentSubdomain}.${currentBaseDomain}`;
+  const fullLiveUrl = `https://${currentBaseDomain}/${currentSubdomain}`;
 
   const handleSaveSubdomain = () => {
     if (!subdomainInput.trim()) {
