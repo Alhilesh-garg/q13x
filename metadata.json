@@ -1,0 +1,6 @@
+{
+  "name": "Profile & Gallery Builder",
+  "description": "Build and customize your profile, social links, and full-bleed image gallery with instant live preview and easy editing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
