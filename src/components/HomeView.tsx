@@ -30,7 +30,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onNavigateToPreview,
 }) => {
   const currentSubdomain = appData.subdomain || 'yourbrand';
-  const baseDomain = 'ytmxcd.ai.studio';
+  const baseDomain = appData.baseDomain || 'q13x-three.vercel.app';
   const fullLiveUrl = appData.subdomain
     ? `https://${appData.subdomain}.${baseDomain}`
     : `https://[your-store].${baseDomain}`;

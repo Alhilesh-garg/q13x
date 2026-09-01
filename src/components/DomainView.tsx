@@ -34,7 +34,7 @@ export const DomainView: React.FC<DomainViewProps> = ({
       'mystore'
   );
   const [baseDomainInput, setBaseDomainInput] = useState<string>(
-    appData.baseDomain || 'ytmxcd.ai.studio'
+    appData.baseDomain || 'q13x-three.vercel.app'
   );
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [isSaved, setIsSaved] = useState<boolean>(true);
@@ -56,7 +56,7 @@ export const DomainView: React.FC<DomainViewProps> = ({
   };
 
   const currentSubdomain = subdomainInput.trim() || 'mystore';
-  const currentBaseDomain = baseDomainInput.trim() || 'ytmxcd.ai.studio';
+  const currentBaseDomain = baseDomainInput.trim() || 'q13x-three.vercel.app';
   const fullLiveUrl = `https://${currentSubdomain}.${currentBaseDomain}`;
 
   const handleSaveSubdomain = () => {

@@ -40,7 +40,7 @@ import {
   ChevronUp,
 } from 'lucide-react';
 
-const STORAGE_KEY = 'ytmxcd_store_draft';
+const STORAGE_KEY = 'store_draft_state';
 
 const INITIAL_DEFAULT_DATA: AppData = {
   title: '',
@@ -49,7 +49,7 @@ const INITIAL_DEFAULT_DATA: AppData = {
   socials: [],
   images: [],
   subdomain: '',
-  baseDomain: 'ytmxcd.ai.studio',
+  baseDomain: 'q13x-three.vercel.app',
 };
 
 export default function App() {
@@ -104,7 +104,7 @@ export default function App() {
           socials: Array.isArray(parsed.socials) ? parsed.socials : [],
           images: Array.isArray(parsed.images) ? parsed.images : [],
           subdomain: parsed.subdomain || '',
-          baseDomain: 'ytmxcd.ai.studio',
+          baseDomain: 'q13x-three.vercel.app',
         };
       }
     } catch (e) {
@@ -385,7 +385,7 @@ export default function App() {
         pin: finalPin,
       });
 
-      showNotification('✓ Store published successfully on ytmxcd.ai.studio!');
+      showNotification('✓ Store published successfully on q13x-three.vercel.app!');
     } catch (err: any) {
       showNotification(`✕ Failed: ${err.message || 'Could not create store'}`);
     } finally {
@@ -415,7 +415,7 @@ export default function App() {
         socials: store.socials || [],
         images: store.images || [],
         subdomain: sub,
-        baseDomain: 'ytmxcd.ai.studio',
+        baseDomain: 'q13x-three.vercel.app',
       });
 
       setEditUploadItems(
@@ -555,7 +555,7 @@ export default function App() {
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
             <span className="hidden xs:inline">STORE BUILDER</span>
             <span className="text-[10px] px-1.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md font-mono font-bold">
-              ytmxcd.ai.studio
+              q13x-three.vercel.app
             </span>
           </button>
         </div>
@@ -925,14 +925,14 @@ export default function App() {
                   className="flex-1 px-3 py-2.5 text-xs sm:text-sm font-bold text-slate-900 font-mono outline-none bg-transparent"
                 />
                 <span className="px-3 py-2.5 bg-indigo-50 text-indigo-700 text-xs sm:text-sm font-mono font-bold select-none border-l border-indigo-100">
-                  .ytmxcd.ai.studio
+                  .q13x-three.vercel.app
                 </span>
               </div>
 
               {/* Subdomain Status */}
               <div className="flex items-center justify-between text-xs mt-1.5">
                 <span className="text-slate-500 text-[11px]">
-                  Live URL: https://{createSubdomain || 'yourbrand'}.ytmxcd.ai.studio
+                  Live URL: https://{createSubdomain || 'yourbrand'}.q13x-three.vercel.app
                 </span>
                 <span
                   className={`font-bold text-[11px] ${
@@ -1076,7 +1076,7 @@ export default function App() {
                 ) : (
                   <>
                     <Sparkles size={16} />
-                    <span>Create Store & Go Live ({createSubdomain}.ytmxcd.ai.studio)</span>
+                    <span>Create Store & Go Live ({createSubdomain}.q13x-three.vercel.app)</span>
                     <ArrowRight size={16} />
                   </>
                 )}
@@ -1129,7 +1129,7 @@ export default function App() {
                       className="flex-1 px-3 py-2 text-xs sm:text-sm font-bold text-slate-900 font-mono outline-none"
                     />
                     <span className="px-3 py-2 bg-indigo-50 text-indigo-700 text-xs font-mono font-bold select-none border-l border-indigo-100">
-                      .ytmxcd.ai.studio
+                      .q13x-three.vercel.app
                     </span>
                   </div>
                 </div>
@@ -1194,7 +1194,7 @@ export default function App() {
                       Unlocked: @{unlockedSubdomain}
                     </span>
                     <span className="text-[11px] text-emerald-700">
-                      https://{unlockedSubdomain}.ytmxcd.ai.studio
+                      https://{unlockedSubdomain}.q13x-three.vercel.app
                     </span>
                   </div>
                 </div>
@@ -1384,14 +1384,14 @@ export default function App() {
           <div className="bg-slate-900 text-white px-3 py-1.5 sm:py-2 text-center text-xs flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
             <span className="font-mono text-emerald-400 font-bold flex items-center gap-1">
               <Globe size={13} />
-              https://{appData.subdomain || 'yourstore'}.ytmxcd.ai.studio
+              https://{appData.subdomain || 'yourstore'}.q13x-three.vercel.app
             </span>
             <div className="flex items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => {
                   navigator.clipboard?.writeText(
-                    `https://${appData.subdomain || 'yourstore'}.ytmxcd.ai.studio`
+                    `https://${appData.subdomain || 'yourstore'}.q13x-three.vercel.app`
                   );
                   showNotification('✓ Store link copied to clipboard!');
                 }}

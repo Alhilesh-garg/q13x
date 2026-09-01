@@ -1,4 +1,10 @@
 export const DEFAULT_API_BASE = 'https://wxc1.onrender.com';
+export const DEFAULT_BASE_DOMAIN = 'q13x-three.vercel.app';
+export const DEFAULT_FRONTEND_URL = 'https://q13x-three.vercel.app';
+
+export function getStoreSubdomainUrl(subdomain: string, baseDomain: string = DEFAULT_BASE_DOMAIN): string {
+  return `https://${subdomain}.${baseDomain}`;
+}
 
 export interface ImageUploadItem {
   id: string;

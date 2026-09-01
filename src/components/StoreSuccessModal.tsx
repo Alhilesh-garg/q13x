@@ -36,7 +36,7 @@ export const StoreSuccessModal: React.FC<StoreSuccessModalProps> = ({
 
   if (!isOpen) return null;
 
-  const liveSubdomainUrl = `https://${subdomain}.ytmxcd.ai.studio`;
+  const liveSubdomainUrl = `https://${subdomain}.q13x-three.vercel.app`;
   const trialStoreUrl = `${window.location.origin}${window.location.pathname}?store=${encodeURIComponent(
     subdomain
   )}`;
@@ -126,7 +126,7 @@ export const StoreSuccessModal: React.FC<StoreSuccessModalProps> = ({
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               Official Subdomain URL
             </span>
-            <span>Live on ytmxcd.ai.studio</span>
+            <span>Live on q13x-three.vercel.app</span>
           </div>
 
           <div className="bg-black/50 border border-white/10 p-2.5 rounded-lg flex items-center justify-between gap-2 overflow-hidden">

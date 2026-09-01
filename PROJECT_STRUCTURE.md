@@ -2,7 +2,8 @@
 
 ## 🌐 Connected Backend API
 - **Live Base URL**: `https://wxc1.onrender.com`
-- **Subdomain Routing**: `https://[subdomain].ytmxcd.ai.studio`
+- **Frontend URL / Base Domain**: `https://q13x-three.vercel.app`
+- **Subdomain Routing**: `https://[subdomain].q13x-three.vercel.app` (e.g. `https://luminastudio.q13x-three.vercel.app`)
 
 ---
 
@@ -46,7 +47,7 @@
   ```
 - **Response**:
   ```json
-  { "success": true, "storeUrl": "https://meeraskitchen.ytmxcd.ai.studio" }
+  { "success": true, "storeUrl": "https://meeraskitchen.q13x-three.vercel.app" }
   ```
 
 ### 4. `POST /api/store/unlock-for-edit`

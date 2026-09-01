@@ -102,7 +102,7 @@ export const PublicStoreView: React.FC<PublicStoreViewProps> = ({
             className="px-4 py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer flex items-center gap-2"
           >
             <Plus size={14} />
-            <span>Create a Store on ytmxcd.ai.studio</span>
+            <span>Create a Store on q13x-three.vercel.app</span>
           </button>
         )}
       </div>
@@ -111,7 +111,7 @@ export const PublicStoreView: React.FC<PublicStoreViewProps> = ({
 
   const validSocialLinks = (store.socials || []).filter((url) => Boolean(url && url.trim()));
   const currentSubdomain = store.subdomain || subdomain || 'mystore';
-  const liveUrl = `https://${currentSubdomain}.ytmxcd.ai.studio`;
+  const liveUrl = `https://${currentSubdomain}.q13x-three.vercel.app`;
 
   const styleConfig: BusinessTitleStyle = (store as AppData).titleStyle || DEFAULT_BUSINESS_STYLE;
 
@@ -271,7 +271,7 @@ export const PublicStoreView: React.FC<PublicStoreViewProps> = ({
       {/* Footer Branding */}
       <footer className="py-6 text-center text-[11px] text-slate-400 bg-white border-t border-slate-100">
         <p>
-          Powered by <span className="font-semibold text-slate-700">ytmxcd.ai.studio</span> Storefronts
+          Powered by <span className="font-semibold text-slate-700">q13x-three.vercel.app</span> Storefronts
         </p>
       </footer>
     </div>
