@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```The following action was requested:
+Running linter...The action produced the following result:
+Linting completed successfully
+Output:
+
+> react-example@0.0.0 lint
+> tsc --noEmit
+
+The following action was requested:
+Building applet...The action produced the following result:
+Build succeeded - the applet is compiled
